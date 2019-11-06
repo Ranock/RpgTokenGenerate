@@ -2,20 +2,20 @@ const Route = require('./Route')
 const tokenController = require('../controllers/tokenController')
 
 class RouteToken extends Route{
-    constructor(Router){
-        super(Router);
+    constructor(){
+        super();
         this.index();
         this.store();
     }
 
     index(){      
-        this.route.get('/token',tokenController.index);        
+        this.route.get('/tokens',tokenController.index);        
     }
     store(){
-        this.route.post('/token', tokenController.store)
+        this.route.post('/tokens', tokenController.store)
     }
-    static init(Router){
-        const rout = new RouteToken(Router)
+    static init(){
+        const rout = new RouteToken()
         return rout.route;
     }
 }

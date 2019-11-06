@@ -1,7 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const RouteToken = require('../routes/RouteToken');
+require('dotenv').config({
+    path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+});
 
+const RouteToken = require('../routes/RouteToken');
+//$env:NODE_ENV='test
 class App {
     constructor(){
         this.express = express();
@@ -15,14 +19,14 @@ class App {
     }
 
     mongooseConnection(){
-        mongoose.connect('mongodb+srv://raock:raock1234@myclusternode-acbtt.mongodb.net/my_base?retryWrites=true&w=majority',{
+        mongoose.connect(`mongodb+srv://raock:raock1234@myclusternode-acbtt.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`,{
             useNewUrlParser : true,
             useUnifiedTopology : true
          })
     }
 
     routes(){
-        this.express.use(RouteToken(express.Router()));
+        this.express.use(RouteToken());
     }
 }
 

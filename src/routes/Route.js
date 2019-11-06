@@ -1,12 +1,12 @@
-const  {Router} = require('express')
+const  Routes = require('express').Router()
 
 class Route{
     /**
      * @constructor
      * @param {Router} ExpressRoute 
      */
-    constructor(ExpressRoute){
-        this.route = ExpressRoute;    
+    constructor(){
+        this.route = Routes;    
     }
 }
 module.exports = Route;
